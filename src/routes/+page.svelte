@@ -139,7 +139,7 @@
 
 <div class="text-center">
   <div class="mt-8 ml-2 grid grid-cols-2 gap-4 w-1/4">
-    <button class="btn btn-primary" on:click={resetTable}> Återställ </button>
+    <button class="btn btn-primary" on:click={resetTable}> Återställ tabell </button>
     <button disabled={!isValid} class="btn btn-secondary" on:click={exportToExcel}>
       Exportera till Excel
     </button>
