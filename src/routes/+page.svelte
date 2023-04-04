@@ -55,9 +55,11 @@
   };
 
   const resetTable = () => {
-    headings = structuredClone(INITIAL_HEADINGS);
-    data = structuredClone(INITIAL_DATA);
-    storeData();
+    if (confirm('Vill du återställa tabellen?')) {
+      headings = structuredClone(INITIAL_HEADINGS);
+      data = structuredClone(INITIAL_DATA);
+      storeData();
+    }
   };
 
   const exportToExcel = () => {
@@ -92,7 +94,7 @@
           {:else}
             <th>
               <input
-                placeholder="empty"
+                placeholder="Ange kolumnnamn..."
                 class="bg-transparent p-2 w-full"
                 on:keyup={storeData}
                 bind:value={heading}
@@ -101,7 +103,7 @@
           {/if}
         {/each}
         <th class="text-right">
-          <button class="btn btn-sm" on:click={addColumn}>Add column</button>
+          <button class="btn btn-sm" on:click={addColumn}>Lägg till kolumn</button>
         </th>
       </tr>
     </thead>
@@ -114,7 +116,7 @@
           {#each row as value}
             <td class="m-0 p-0">
               <input
-                placeholder="empty"
+                placeholder="..."
                 class="bg-transparent p-2 w-full"
                 on:keyup={storeData}
                 bind:value
@@ -123,9 +125,9 @@
           {/each}
           <td class="m-0 p-0">
             <div class="grid grid-cols-2 gap-4">
-              <button class="btn btn-sm" on:click={() => addRow(i)}>Add row</button>
+              <button class="btn btn-sm" on:click={() => addRow(i)}>Lägg till rad</button>
               {#if data.length > 1}
-                <button class="btn btn-sm" on:click={() => removeRow(i)}>Remove</button>
+                <button class="btn btn-sm" on:click={() => removeRow(i)}>Ta bort</button>
               {/if}
             </div>
           </td>
@@ -137,9 +139,9 @@
 
 <div class="text-center">
   <div class="mt-8 ml-2 grid grid-cols-2 gap-4 w-1/4">
-    <button class="btn btn-primary" on:click={resetTable}> Reset </button>
+    <button class="btn btn-primary" on:click={resetTable}> Återställ </button>
     <button disabled={!isValid} class="btn btn-secondary" on:click={exportToExcel}>
-      Export to Excel
+      Exportera till Excel
     </button>
   </div>
 </div>
