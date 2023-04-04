@@ -38,9 +38,11 @@
   };
 
   const removeRow = (index: number) => {
-    data.splice(index, 1);
-    data = data;
-    storeData();
+    if (confirm(`Vill du ta bort rad ${index + 1}?`)) {
+      data.splice(index, 1);
+      data = data;
+      storeData();
+    }
   };
 
   const addColumn = () => {
@@ -59,6 +61,8 @@
   };
 
   const exportToExcel = () => {
+    const filename = prompt('Ange filnamn...');
+
     // European Excel use ";" while American use ","
     const delimiter = ';';
     let output = 'data:text/csv;charset=utf-8,';
@@ -69,7 +73,7 @@
     const encodedUri = encodeURI(output);
     const link = document.createElement('a');
     link.setAttribute('href', encodedUri);
-    link.setAttribute('download', 'M3 Stuff.csv');
+    link.setAttribute('download', `${filename}.csv`);
     document.body.appendChild(link);
 
     link.click();
@@ -81,6 +85,7 @@
     <!-- head -->
     <thead>
       <tr>
+        <th>&nbsp;</th>
         {#each headings as heading, i}
           {#if i <= 3}
             <th>{heading}</th>
@@ -105,6 +110,7 @@
     <tbody>
       {#each data as row, i}
         <tr class="m-0 p-0">
+          <td>{i + 1}</td>
           {#each row as value}
             <td class="m-0 p-0">
               <input
