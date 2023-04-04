@@ -59,6 +59,7 @@
   };
 
   const exportToExcel = () => {
+    // European Excel use ";" while American use ","
     const delimiter = ';';
     let output = 'data:text/csv;charset=utf-8,';
 
