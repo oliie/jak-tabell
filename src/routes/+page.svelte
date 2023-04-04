@@ -100,6 +100,8 @@
         </th>
       </tr>
     </thead>
+
+    <!-- body -->
     <tbody>
       {#each data as row, i}
         <tr class="m-0 p-0">
