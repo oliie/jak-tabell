@@ -65,20 +65,22 @@
   const exportToExcel = () => {
     const filename = prompt('Ange filnamn...');
 
-    // European Excel use ";" while American use ","
-    const delimiter = ';';
-    let output = 'data:text/csv;charset=utf-8,';
+    if (filename) {
+      // European Excel use ";" while American use ","
+      const delimiter = ';';
+      let output = 'data:text/csv;charset=utf-8,';
 
-    output += headings.join(delimiter) + '\r\n';
-    data.forEach((row) => (output += row.join(delimiter) + '\r\n'));
+      output += headings.join(delimiter) + '\r\n';
+      data.forEach((row) => (output += row.join(delimiter) + '\r\n'));
 
-    const encodedUri = encodeURI(output);
-    const link = document.createElement('a');
-    link.setAttribute('href', encodedUri);
-    link.setAttribute('download', `${filename}.csv`);
-    document.body.appendChild(link);
+      const encodedUri = encodeURI(output);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', `${filename}.csv`);
+      document.body.appendChild(link);
 
-    link.click();
+      link.click();
+    }
   };
 </script>
 
