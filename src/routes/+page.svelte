@@ -124,7 +124,9 @@
           <td class="m-0 p-0">
             <div class="grid grid-cols-2 gap-4">
               <button class="btn btn-sm" on:click={() => addRow(i)}>Add row</button>
-              <button class="btn btn-sm" on:click={() => removeRow(i)}>Remove</button>
+              {#if data.length > 1}
+                <button class="btn btn-sm" on:click={() => removeRow(i)}>Remove</button>
+              {/if}
             </div>
           </td>
         </tr>
