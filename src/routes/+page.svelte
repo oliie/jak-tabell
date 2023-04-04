@@ -90,7 +90,10 @@
         <th>&nbsp;</th>
         {#each headings as heading, i}
           {#if i <= 3}
-            <th>{heading}</th>
+            <th
+              >{heading}
+              {#if i < 2}<span class="text-red-400">*</span>{/if}</th
+            >
           {:else}
             <th>
               <input
